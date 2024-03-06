@@ -8,7 +8,8 @@ class FlatsController < ApplicationController
     @markers = @flats.geocoded.map do |flat| # geocoded selects only the flats that have a latitude and longitude
       {
         lat: flat.latitude,
-        lng: flat.longitude
+        lng: flat.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { flat: flat })
       }
     end
   end
